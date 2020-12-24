@@ -78,6 +78,8 @@ def applyConfig():
 			os.environ[protocol + "_PROXY"] = proxy_url
 		elif protocol + "_PROXY" in orig_env.keys() and config.conf['proxy']['socks_host'] == '':
 			os.environ[protocol + "_PROXY"] = orig_env[protocol + "_PROXY"]
+		elif config.conf['proxy'][protocol.lower() + "_host"] == '' and protocol + "_PROXY" in os.environ.keys() and protocol + "_PROXY" not in orig_env.keys():
+			del os.environ[protocol + "_PROXY"]
 	urllib.request._opener = urllib.request.build_opener()
 
 
