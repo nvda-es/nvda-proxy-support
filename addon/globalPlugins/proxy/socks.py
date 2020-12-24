@@ -899,6 +899,8 @@ class sockSSLSocket(socksocket):
 
         # See if we are connected
         try:
+            self.proxy_peername = sock.proxy_peername
+            self.proxy_sockname = sock.proxy_sockname
             peer = self.getpeername()
             if not peer:
                 connected = False
