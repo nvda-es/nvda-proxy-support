@@ -141,7 +141,7 @@ class ProxyPanel(SettingsPanel):
 		# TRANSLATORS: proxy username for socks connections
 		self.socks_username = socks_group.addLabeledControl(_("Username: "), wx.TextCtrl, value=config.conf['proxy']['socks_username'])
 		# TRANSLATORS: proxy password for socks connections
-		self.socks_password = socks_group.addLabeledControl(_("Password: "), wx.TextCtrl, value=config.conf['proxy']['socks_password'])
+		self.socks_password = socks_group.addLabeledControl(_("Password: "), wx.TextCtrl, style=wx.TE_PASSWORD, value=config.conf['proxy']['socks_password'])
 		# TRANSLATORS: label for a group of proxy settings in the proxy settings panel
 		http_group = guiHelper.BoxSizerHelper(self, sizer=wx.StaticBoxSizer(wx.StaticBox(self, label=_("HTTP traffic")), wx.HORIZONTAL))
 		helper.addItem(http_group)
@@ -152,7 +152,7 @@ class ProxyPanel(SettingsPanel):
 		# TRANSLATORS: proxy username for http connections
 		self.http_username = http_group.addLabeledControl(_("Username: "), wx.TextCtrl, value=config.conf['proxy']['http_username'])
 		# TRANSLATORS: proxy password for http connections
-		self.http_password = http_group.addLabeledControl(_("Password: "), wx.TextCtrl, value=config.conf['proxy']['http_password'])
+		self.http_password = http_group.addLabeledControl(_("Password: "), wx.TextCtrl, style=wx.TE_PASSWORD, value=config.conf['proxy']['http_password'])
 		# TRANSLATORS: label for a group of proxy settings in the proxy settings panel
 		https_group = guiHelper.BoxSizerHelper(self, sizer=wx.StaticBoxSizer(wx.StaticBox(self, label=_("HTTPS traffic")), wx.HORIZONTAL))
 		helper.addItem(https_group)
@@ -163,7 +163,7 @@ class ProxyPanel(SettingsPanel):
 		# TRANSLATORS: proxy username for https connections
 		self.https_username = https_group.addLabeledControl(_("Username: "), wx.TextCtrl, value=config.conf['proxy']['https_username'])
 		# TRANSLATORS: proxy password for https connections
-		self.https_password = https_group.addLabeledControl(_("Password: "), wx.TextCtrl, value=config.conf['proxy']['https_password'])
+		self.https_password = https_group.addLabeledControl(_("Password: "), wx.TextCtrl, style=wx.TE_PASSWORD, value=config.conf['proxy']['https_password'])
 		# TRANSLATORS: label for a group of proxy settings in the proxy settings panel
 		ftp_group = guiHelper.BoxSizerHelper(self, sizer=wx.StaticBoxSizer(wx.StaticBox(self, label=_("FTP traffic")), wx.HORIZONTAL))
 		helper.addItem(ftp_group)
@@ -174,7 +174,7 @@ class ProxyPanel(SettingsPanel):
 		# TRANSLATORS: proxy username for ftp connections
 		self.ftp_username = ftp_group.addLabeledControl(_("Username: "), wx.TextCtrl, value=config.conf['proxy']['ftp_username'])
 		# TRANSLATORS: proxy password for ftp connections
-		self.ftp_password = ftp_group.addLabeledControl(_("Password: "), wx.TextCtrl, value=config.conf['proxy']['ftp_password'])
+		self.ftp_password = ftp_group.addLabeledControl(_("Password: "), wx.TextCtrl, style=wx.TE_PASSWORD, value=config.conf['proxy']['ftp_password'])
 
 	def onSave(self):
 		config.conf['proxy']['http_host'] = self.http_host.GetValue()
