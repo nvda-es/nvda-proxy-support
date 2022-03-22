@@ -1,7 +1,7 @@
 # Proxy support add-on for NVDA
 # This file is covered by the GNU General Public License.
 # See the file COPYING.txt for more details.
-# Copyright (C) 2020 Jose Manuel Delicado <jm.delicado@nvda.es>
+# Copyright (C) 2022 Jose Manuel Delicado <jm.delicado@nvda.es>
 import addonHandler
 import globalPluginHandler
 import config
