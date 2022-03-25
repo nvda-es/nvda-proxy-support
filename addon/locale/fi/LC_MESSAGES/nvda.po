@@ -34,9 +34,9 @@ msgstr "HTTP"
 msgid "Proxy"
 msgstr "Välityspalvelin"
 
-#. TRANSLATORS: description for the proxy settings panel
+#, fuzzy
 msgid ""
-"The following options allows you to configure a proxy server so NVDA can "
+"The following options allow you to configure a proxy server so NVDA can "
 "connect to the Internet"
 msgstr ""
 "Seuraavien asetusten avulla voit määrittää välityspalvelimen, jotta NVDA voi "
