@@ -33,13 +33,13 @@ msgstr "HTTP"
 msgid "Proxy"
 msgstr "Proxy"
 
-#. TRANSLATORS: description for the proxy settings panel
+#, fuzzy
 msgid ""
-"The following options allows you to configure a proxy server so NVDA can "
+"The following options allow you to configure a proxy server so NVDA can "
 "connect to the Internet"
 msgstr ""
-"Următoarele opțiuni vă permit să configurați un server proxy, astfel "
-"încât NVDA să se poată conecta la Internet"
+"Următoarele opțiuni vă permit să configurați un server proxy, astfel încât "
+"NVDA să se poată conecta la Internet"
 
 #. TRANSLATORS: label for a group of proxy settings in the proxy settings panel
 msgid "All traffic"
@@ -104,5 +104,4 @@ msgstr "Asistență pentru proxy"
 msgid ""
 "This add-on allows NVDA connecting to the Internet through a proxy server."
 msgstr ""
-"Acest supliment permite conectarea la Internet a NVDA printr-un server "
-"proxy."
+"Acest supliment permite conectarea la Internet a NVDA printr-un server proxy."
