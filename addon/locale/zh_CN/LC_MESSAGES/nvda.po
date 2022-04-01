@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: proxy 1.0.3\n"
 "Report-Msgid-Bugs-To: nvda-translations@groups.io\n"
 "POT-Creation-Date: 2021-11-17 12:30+0000\n"
-"PO-Revision-Date: 2021-11-23 10:02+0800\n"
+"PO-Revision-Date: 2022-03-26 12:21+0800\n"
 "Last-Translator: \n"
 "Language-Team: Cary-rowen <manchen_0528@outlook.com>\n"
 "Language: zh_CN\n"
@@ -34,11 +34,11 @@ msgstr "HTTP"
 msgid "Proxy"
 msgstr "代理"
 
-#, fuzzy
 msgid ""
 "The following options allow you to configure a proxy server so NVDA can "
 "connect to the Internet"
-msgstr "以下选项用于配置代理服务器，以便 NVDA 可以通过代理服务器连接到互联网。"
+msgstr ""
+"以下选项用于配置代理服务器，以便 NVDA 可以通过代理服务器连接到互联网。"
 
 #. TRANSLATORS: label for a group of proxy settings in the proxy settings panel
 msgid "All traffic"
