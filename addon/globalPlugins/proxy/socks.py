@@ -23,6 +23,7 @@ import struct
 __version__ = "1.7.1-nvda"
 
 log = logging.getLogger(__name__)
+original_getaddrinfo = socket.getaddrinfo
 
 PROXY_TYPE_SOCKS4 = SOCKS4 = 1
 PROXY_TYPE_SOCKS5 = SOCKS5 = 2
@@ -1232,3 +1233,7 @@ class sockSSLSocket(socksocket):
             return self._sslobj.version()
         else:
             return None
+
+
+def getaddrinfo(*args):
+	return [(socket.AF_INET, socket.SOCK_STREAM, 6, '', (args[0], args[1]))]
