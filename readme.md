@@ -1,6 +1,8 @@
 # Proxy support for NVDA
 
-## Introduction
+* Author: José Manuel Delicado
+* NVDA compatibility: 2021.3 and beyond
+* Download [stable version][1]
 
 This add-on allows the NVDA screen reader to connect to the Internet through one or more proxy servers. To make it possible, it applies various patches to the standard Python library or modifies certain environment variables, depending on the chosen configuration. You will be able to update NVDA and their add-ons automatically from your corporate environment and even perform remote sessions, provided that your organization proxy server allows it.
 
@@ -38,6 +40,16 @@ Tipically, most users will only have to configure the first settings group. If y
 
 ## Changelog
 
+### Version 1.1
+
+* Compatible with NVDA 2022.1.
+* For security reasons, minimum NVDA version is set to 2021.3.
+* Patch socket.getaddrinfo function when "Use proxy for dns requests if possible" checkbox is checked and a general proxy has been configured.
+
 ### Version 1.0
 
 * Initial release.
+
+[[!tag dev stable]]
+
+[1]: https://addons.nvda-project.org/files/get.php?file=nvdaproxy
