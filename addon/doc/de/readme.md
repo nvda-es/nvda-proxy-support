@@ -1,7 +1,7 @@
 # Proxy-Unterstützung für NVDA #
 
 * Autor: José Manuel Delicado
-* NVDA-Kompatibilität: 2019.3 bis 2021.1
+* NVDA-Kompatibilität: Ab 2021.3
 * [Stabile Version] herunterladen[1]
 
 Mit dieser NVDA-Erweiterung können Sie Verbindungen über eine oder mehrere
@@ -45,7 +45,7 @@ Zusätzlich zu den vorherigen Feldern stehen in der ersten Einstellungsgruppe
 folgende Optionen zur Verfügung:
 
 * SOCKS-Proxy-Typ: Socks4/5 oder HTTP können ausgewählt werden.
-* Verwenden Sie nach Möglichkeit einen Proxy für DNS-Anfragen: Wenn dieses
+* Nach Möglichkeit einen Proxy für DNS-Anfragen verwenden: Wenn dieses
   Kontrollkästchen aktiviert ist, werden Hostnamen oder Domänennamen direkt
   an den Proxy-Server gesendet und dort aufgelöst. Wenn es deaktiviert ist,
   werden Namen lokal aufgelöst und der Server erhält nur die
@@ -72,6 +72,15 @@ Netzwerkadministrator Ihres Unternehmens nach weiteren Informationen.
   verwendet.
 
 ## Änderungsprotokoll
+
+### Version 1.1
+
+* Kompatibel mit NVDA 2022.1.
+* Aus Sicherheitsgründen wurde die Minimum-Version von NVDA auf 2021.3
+  festgelegt.
+* Patch der Funktion "socket.getaddrinfo", wenn das Kontrollkästchen "Nach
+  Möglichkeit einen Proxy für DNS-Anfragen verwenden" aktiviert ist und ein
+  allgemeiner Proxy konfiguriert ist.
 
 ### Version 1.0
 

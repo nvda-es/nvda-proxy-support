@@ -1,7 +1,7 @@
 # Podrška posrednika za NVDA (Proxy support for NVDA) #
 
 * Autor: Jose Manuel Delicado
-* NVDA kompatibilnost: 2019.3 do 2021.1
+* NVDA kompatibilnost: 2021.3 i novije verzije
 * Preuzmi [stabilnu verziju][1]
 
 Ovaj dodatak omogućuje NVDA čitaču ekrana da se poveže s internetom putem
@@ -67,6 +67,13 @@ znaš podatke posrednika, zatraži informacije od administratora.
   posrednika, umjesto njega će se koristiti standard sustava.
 
 ## Zapis promjena
+
+### Verzija 1.1
+
+* Kompatibilno s NVDA čitačem 2022.1.
+* Iz sigurnosnih razloga, minimalna NVDA verzija postavljena je na 2021.3.
+* Zakrpa funkcije „socket.getaddrinfo” kad je potvrdni okvir „Ako je moguće,
+  koristi posrednika za dns” aktiviran i ako je konfiguriran opći posrednik.
 
 ### Verzija 1.0
 
