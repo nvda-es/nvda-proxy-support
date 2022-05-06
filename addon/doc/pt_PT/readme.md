@@ -1,7 +1,7 @@
 # Proxy support for NVDA #
 
 * Autor: José Manuel Delicado
-* Compatibilidade com o NVDA: 2019.3 a 2021.1
+* NVDA compatibility: 2021.3 and beyond
 * Baixar [versão estável] [1]
 
 Este extra permite ao leitor de ecrã NVDA ligar-se à Internet através de um
@@ -69,6 +69,13 @@ mais informações ao administrador da rede da sua organização.
   proxy específico, será utilizado em vez disso o padrão do sistema.
 
 ## Alterações
+
+### Version 1.1
+
+* Compatible with NVDA 2022.1.
+* For security reasons, minimum NVDA version is set to 2021.3.
+* Patch socket.getaddrinfo function when "Use proxy for dns requests if
+  possible" checkbox is checked and a general proxy has been configured.
 
 ### Versão 1.0
 
