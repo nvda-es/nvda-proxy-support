@@ -18,6 +18,7 @@ addonHandler.initTranslation()
 orig_socket = None
 orig_env = None
 orig_getproxies_registry = None
+orig_getaddrinfo = None
 
 config.conf.spec['proxy'] = {
 	"http_host": "string(default='')",
@@ -69,10 +70,15 @@ def applyConfig():
 		socket.socket = socks.socksocket
 		ssl.SSLContext.sslsocket_class = socks.sockSSLSocket
 		urllib.request.getproxies_registry = patched_getproxies_registry
+		if config.conf['proxy']['socks_dns']:
+			socket.getaddrinfo = socks.getaddrinfo
+		else:
+			socket.getaddrinfo = orig_getaddrinfo
 	else:
 		socket.socket = orig_socket
 		ssl.SSLContext.sslsocket_class = ssl.SSLSocket
 		urllib.request.getproxies_registry = orig_getproxies_registry
+		socket.getaddrinfo = orig_getaddrinfo
 		for k, v in orig_env.items():
 			os.environ[k] = v
 	for protocol in ['HTTP', 'HTTPS', 'FTP']:
@@ -97,26 +103,28 @@ def applyConfig():
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def __init__(self):
 		super(GlobalPlugin, self).__init__()
-		global orig_socket, orig_env, orig_getproxies_registry
+		global orig_socket, orig_env, orig_getproxies_registry, orig_getaddrinfo
 		orig_socket = socket.socket
 		orig_env = {}
 		for p in ['HTTP_PROXY', 'HTTPS_PROXY', 'FTP_PROXY']:
 			if p in os.environ.keys():
 				orig_env[p] = os.environ[p]
 		orig_getproxies_registry = urllib.request.getproxies_registry
+		orig_getaddrinfo = socket.getaddrinfo
 		applyConfig()
 		config.post_configProfileSwitch.register(self.onConfigChanged)
 		config.post_configReset.register(self.onConfigChanged)
 		NVDASettingsDialog.categoryClasses.append(ProxyPanel)
 
 	def terminate(self):
-		global orig_socket, orig_env, orig_getproxies_registry
+		global orig_socket, orig_env, orig_getproxies_registry, orig_getaddrinfo
 		socket.socket = orig_socket
 		ssl.SSLContext.sslsocket_class = ssl.SSLSocket
 		for k, v in orig_env.items():
 			os.environ[k] = v
 		orig_socket = None
 		orig_env = None
+		orig_getaddrinfo = None
 		orig_getproxies_registry = None
 		config.post_configProfileSwitch.unregister(self.onConfigChanged)
 		config.post_configReset.unregister(self.onConfigChanged)
