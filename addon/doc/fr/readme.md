@@ -37,11 +37,9 @@ suivants :
 * Serveur : Nom d'hôte ou adresse IP du serveur proxy. Laissez-le vide pour
   désactiver ce proxy en particulier.
 * Port : Port du serveur.
-* Nom d'utilisateur : optionnel. Nom d'utilisateur pour s'authentifier sur
-  le serveur.
-* Mot de passe : optionnel. Mot de passe pour s'authentifier sur le
-  serveur. Notez que le mot de passe n'est pas nécessaire sur les serveurs
-  socks4.
+* Username: optional. User name for server authentication.
+* Password: optional. Password for server authentication. Note that password
+  is not required for socks4 servers.
 
 Outre les champs précédents, dans le premier groupe d'options, on trouve les
 options suivantes :
@@ -64,8 +62,8 @@ serveur proxy, voir avec l'administrateur réseau de votre organisation.
 * Le trafic UDP n'est pas supporté sur tous les types de serveurs proxy.
 * Les bibliothèques DLL externes ne respecteront pas les options configurées
   dans cette extension.
-* Sur les serveurs proxy http, seule l'authentification de base est
-  supportée. L'authentification digest n'est pas supportée.
+* Only basic authentication is supported for http proxy servers. Digest
+  authentication is not supported.
 * Afin de rediriger tout le trafic (y compris les connexions https) via un
   proxy http, le serveur doit supporter la méthode http CONNECT.
 * Vous ne pouvez pas configurer de mode "connexion directe". Si vous

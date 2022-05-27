@@ -47,8 +47,7 @@
 
 * 兼容 NVDA 2022.1。
 * 出于安全考虑，将兼容的最低 NVDA 版本设置为 2021.3。
-* Patch socket.getaddrinfo function when "Use proxy for dns requests if
-  possible" checkbox is checked and a general proxy has been configured.
+* 选中“如果可能，对 dns 请求使用代理”复选框并配置通用代理时修复 socket.getaddrinfo 功能。
 
 ### 版本 1.0
 

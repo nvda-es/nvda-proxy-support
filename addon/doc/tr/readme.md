@@ -1,7 +1,7 @@
 # NVDA için Proxy Desteği #
 
 * Yazan: Jose Manuel Delicado
-* NVDA compatibility: 2021.3 and beyond
+* NVDA uyumluluğu: 2021.3 ve sonrasıNVDA uyumluluğu: 2019.3 ile 2021.1 arası
 * [kararlı sürüm][1] indir
 
 Bu eklenti, NVDA ekran okuyucusunun bir veya daha fazla proxy sunucusu
@@ -68,10 +68,10 @@ ağ yöneticinize danışın.
 
 ## Changelog
 
-### Version 1.1
+### Sürüm 1.1
 
-* Compatible with NVDA 2022.1.
-* For security reasons, minimum NVDA version is set to 2021.3.
+* NVDA 2022.1 ile uyumludur.
+* Güvenlik sebeplerinden dolayı minimum NVDA sürümü 2021.1'e ayarlanmıştır.
 * Patch socket.getaddrinfo function when "Use proxy for dns requests if
   possible" checkbox is checked and a general proxy has been configured.
 

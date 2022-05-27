@@ -35,11 +35,9 @@ grupos teñen os seguintes campos:
 * Host (servidor): nome de servidor ou enderezo IP do servidor proxy. déixao
   en blanco para deshabilitar ese proxy en concreto.
 * Port (porto): porto do servidor.
-* Username (nome de usuario): opcional. Nome de usuario para autenticación
-  no servidor.
-* Password (contrasinal): opcional. contrasinal para a autenticación no
-  servidor. Ten en conta que o contrasinal non se require en servidores
-  socks4.
+* Username: optional. User name for server authentication.
+* Password: optional. Password for server authentication. Note that password
+  is not required for socks4 servers.
 
 Ademais dos anteriores campos, están dispoñibles as seguintes opcións no
 primeiro grupo de axustes:
@@ -63,8 +61,8 @@ administrador da rede da organización para máis información.
 * O tráfico UDP non está soportado en ningún dos servidores proxy.
 * Bibliotecas DLL externas non respectarán os axustes configurados neste
   complemento.
-* Só se soporta autenticación básica en servidores proxy http. Non se
-  soporta autenticación digest.
+* Only basic authentication is supported for http proxy servers. Digest
+  authentication is not supported.
 * Para redirixir todo o tráfico (incluíndo conexións https) a través dun
   proxy http, o servidor debe soportar o método http CONNECT.
 * Non se pode configurar un modo de "conexión directa". Se deshabilitas un

@@ -35,10 +35,9 @@ para protocolos específicos. Todos os grupos têm os seguintes campos:
 * Host: hostname ou endereço ip do servidor proxy. Deixar vazio para
   desactivar esse proxy em particular.
 * Porta: porta do servidor.
-* Nome de utilizador: opcional. Nome de utilizador para autenticação do
-  servidor.
-* Senha: opcional. Palavra-passe para autenticação do servidor. Note que a
-  palavra-passe não é necessária para os servidores Socks4.
+* Username: optional. User name for server authentication.
+* Password: optional. Password for server authentication. Note that password
+  is not required for socks4 servers.
 
 Para além dos campos anteriores, estão disponíveis as seguintes opções no
 primeiro grupo de configurações:
@@ -61,8 +60,8 @@ mais informações ao administrador da rede da sua organização.
 * O tráfego UDP não é suportado em todos os servidores proxy.
 * As bibliotecas DLL externas não respeitarão as definições configuradas
   neste add-on.
-* Apenas a autenticação básica é suportada para servidores proxy http. A
-  autenticação digest não é suportada.
+* Only basic authentication is supported for http proxy servers. Digest
+  authentication is not supported.
 * A fim de redireccionar todo o tráfego (incluindo ligações https) através
   de um proxy http, o servidor deve suportar o método CONNECT http.
 * Um modo de "ligação directa" não pode ser configurado. Se desactivar um

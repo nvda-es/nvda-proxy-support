@@ -36,7 +36,7 @@ seuraavat kentät:
 * Isäntä: välityspalvelimen isäntänimi tai IP-osoite. Jätä tyhjäksi
   poistaaksesi kyseisen välityspalvelimen käytöstä.
 * Portti: palvelimen portti.
-* Käyttäjätunnus: valinnainen. Käyttäjätunnus palvelimen todennusta varten.
+* Käyttäjänimi: valinnainen. Käyttäjänimi palvelimen todennusta varten.
 * Salasana: valinnainen. Salasana palvelimen todentamiseen. Huomaa, että
   salasanaa ei vaadita SOCKS4-palvelimille.
 
