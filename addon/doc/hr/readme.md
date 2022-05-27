@@ -35,10 +35,9 @@ protokole. Sve grupe imaju sljedeća polja:
 * Računalo: ime računala ili ip adresa posredničkog poslužitelja. Ostavi
   prazno za deaktiviranje tog posrednika.
 * Priključak: priključak poslužitelja.
-* Korisničko ime: neobavezno. Korisničko ime za autentifikaciju
-  poslužitelja.
-* Lozinka: neobavezno. Lozinka za autentifikaciju poslužitelja. Lozinka nije
-  potrebna za socks4 poslužitelje.
+* Username: optional. User name for server authentication.
+* Password: optional. Password for server authentication. Note that password
+  is not required for socks4 servers.
 
 Pored prethodnih polja, u prvoj grupi postavki dostupne su sljedeće
 mogućnosti:
@@ -59,8 +58,8 @@ znaš podatke posrednika, zatraži informacije od administratora.
 * UDP promet nije podržan na svim posredničkim poslužiteljima.
 * Vanjske DLL biblioteke neće se držati postavaka koje su konfigurirane u
   ovom dodatku.
-* Za http posredničke poslužitelje je podržana samo osnovna provjera
-  autentifikacije. Sažeta autentifikacija nije podržana.
+* Only basic authentication is supported for http proxy servers. Digest
+  authentication is not supported.
 * Za preusmjeravanje svog prometa (uključujući https veze) putem http
   posrednika, poslužitelj mora podržavati http metodu CONNECT.
 * Modus „izravne veze” se ne može konfigurirati. Ako deaktiviraš određenog
