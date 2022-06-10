@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: proxy 1.0.3\n"
 "Report-Msgid-Bugs-To: nvda-translations@groups.io\n"
 "POT-Creation-Date: 2021-11-17 12:30+0000\n"
-"PO-Revision-Date: 2022-05-29 10:57+0200\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2022-06-03 21:46+0200\n"
+"Last-Translator: Zvonimir <9a5dsz@gozaltech.org>\n"
 "Language-Team: \n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -33,12 +33,11 @@ msgstr "HTTP"
 msgid "Proxy"
 msgstr "Serwer proxy"
 
-#, fuzzy
 msgid ""
 "The following options allow you to configure a proxy server so NVDA can "
 "connect to the Internet"
 msgstr ""
-"Poniższe opcje umożliwiają skonfigurowanie serwera proxy, aby NVDA mogła "
+"Poniższe opcje umożliwiają skonfigurowanie serwera proxy, aby NVDA mógł "
 "łączyć się z Internetem"
 
 #. TRANSLATORS: label for a group of proxy settings in the proxy settings panel
@@ -54,14 +53,14 @@ msgstr "Typ serwera proxy SOCKS"
 #. TRANSLATORS: proxy host for https connections
 #. TRANSLATORS: proxy host for ftp connections
 msgid "Host: "
-msgstr "Ogłaszanie alertu \"Organizator wyciszył audio\" %s"
+msgstr "Host: "
 
 #. TRANSLATORS: proxy port for socks connections
 #. TRANSLATORS: proxy port for http connections
 #. TRANSLATORS: proxy port for https connections
 #. TRANSLATORS: proxy port for ftp connections
 msgid "Port: "
-msgstr "Port:"
+msgstr "Port: "
 
 #. TRANSLATORS: option to redirect dns traffic through a SOCKSv5 proxy
 msgid "Use proxy for DNS requests if possible"
@@ -79,7 +78,7 @@ msgstr "Nazwa użytkownika: "
 #. TRANSLATORS: proxy password for https connections
 #. TRANSLATORS: proxy password for ftp connections
 msgid "Password: "
-msgstr "Hasło:"
+msgstr "Hasło: "
 
 #. TRANSLATORS: label for a group of proxy settings in the proxy settings panel
 msgid "HTTP traffic"
