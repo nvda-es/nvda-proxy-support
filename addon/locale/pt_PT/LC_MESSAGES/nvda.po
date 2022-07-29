@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: proxy 1.0.3\n"
 "Report-Msgid-Bugs-To: nvda-translations@groups.io\n"
 "POT-Creation-Date: 2021-11-17 12:30+0000\n"
-"PO-Revision-Date: 2022-01-15 17:44+0000\n"
+"PO-Revision-Date: 2022-07-25 13:01+0100\n"
 "Last-Translator: Ângelo Abrantes <ampa4374@gmail.com>\n"
 "Language-Team: Equipa portuguesa do NVDA: Ângelo Abrantes e Rui fontes\n"
 "Language: pt_PT\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #. TRANSLATORS: socks4 proxy type
@@ -35,7 +35,6 @@ msgstr "HTTP"
 msgid "Proxy"
 msgstr "Proxy"
 
-#, fuzzy
 msgid ""
 "The following options allow you to configure a proxy server so NVDA can "
 "connect to the Internet"
@@ -74,14 +73,14 @@ msgstr "Usar proxy para solicitações DNS se for possível"
 #. TRANSLATORS: proxy username for https connections
 #. TRANSLATORS: proxy username for ftp connections
 msgid "Username: "
-msgstr "Nome de utilizador"
+msgstr "Nome de utilizador "
 
 #. TRANSLATORS: proxy password for socks connections
 #. TRANSLATORS: proxy password for http connections
 #. TRANSLATORS: proxy password for https connections
 #. TRANSLATORS: proxy password for ftp connections
 msgid "Password: "
-msgstr "senha: "
+msgstr "Senha: "
 
 #. TRANSLATORS: label for a group of proxy settings in the proxy settings panel
 msgid "HTTP traffic"
