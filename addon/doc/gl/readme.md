@@ -1,7 +1,7 @@
 # Soporte proxy para NVDA #
 
 * Autor: Jose Manuel Delicado
-* NVDA compatibility: 2021.3 and beyond
+* Compatibilidade con NVDA: 2021.3 en diante
 * Descargar [versión estable][1]
 
 Este complemento permite ó lector de pantallas NVDA conectarse á Internet a
@@ -32,24 +32,23 @@ primeiro permíteche configurar un proxy xeral para todo o tráfico. Os outros
 grupos permítenche configurar só para protocolos específicos. todos os
 grupos teñen os seguintes campos:
 
-* Host (servidor): nome de servidor ou enderezo IP do servidor proxy. déixao
-  en blanco para deshabilitar ese proxy en concreto.
-* Port (porto): porto do servidor.
-* Username: optional. User name for server authentication.
-* Password: optional. Password for server authentication. Note that password
-  is not required for socks4 servers.
+* Servidor: nome de servidor ou enderezo IP do servidor proxy. déixao en
+  blanco para deshabilitar ese proxy en concreto.
+* Porto: porto do servidor.
+* Nome de usuario: opcional. Nome de usuario para autenticación no servidor.
+* Contrasinal: opcional. contrasinal para a autenticación no servidor. Ten
+  en conta que o contrasinal non se require en servidores socks4.
 
 Ademais dos anteriores campos, están dispoñibles as seguintes opcións no
 primeiro grupo de axustes:
 
-* SOCKS proxy type (tipo de servidor SOCKS): pódese seleccionar socks4,
-  socks5 ou http.
-* Use proxy for dns requests if possible (utilizar proxy para solicitudes
-  DNS cando sexa posible): cando esta caixa estea marcada, os nomes de
-  servidor ou de dominio enviaranse a e resolveranse directamente no
-  servidor proxy. Cando estea desmarcada, os nomes resolveranse localmente e
-  o servidor recibirá só o enderezo IP de destino. Ten en conta que non
-  todos os servidores socks4 soportan esta opción.
+* Tipo de servidor SOCKS: pódese seleccionar socks4, socks5 ou http.
+* Utilizar proxy para solicitudes DNS cando sexa posible: cando esta caixa
+  estea marcada, os nomes de servidor ou de dominio enviaranse a e
+  resolveranse directamente no servidor proxy. Cando estea desmarcada, os
+  nomes resolveranse localmente e o servidor recibirá só o enderezo IP de
+  destino. Ten en conta que non todos os servidores socks4 soportan esta
+  opción.
 
 Normalmente, a maioría de usuarios só terán que configurar o primeiro grupo
 de axustes. Se non coñeces os detalles do teu proxy, consulta ó
@@ -61,8 +60,8 @@ administrador da rede da organización para máis información.
 * O tráfico UDP non está soportado en ningún dos servidores proxy.
 * Bibliotecas DLL externas non respectarán os axustes configurados neste
   complemento.
-* Only basic authentication is supported for http proxy servers. Digest
-  authentication is not supported.
+* Só se soporta autenticación básica en servidores proxy http. Non se
+  soporta autenticación digest.
 * Para redirixir todo o tráfico (incluíndo conexións https) a través dun
   proxy http, o servidor debe soportar o método http CONNECT.
 * Non se pode configurar un modo de "conexión directa". Se deshabilitas un
@@ -70,12 +69,13 @@ administrador da rede da organización para máis información.
 
 ## Rexistro de trocos
 
-### Version 1.1
+### Versión 1.1
 
-* Compatible with NVDA 2022.1.
-* For security reasons, minimum NVDA version is set to 2021.3.
-* Patch socket.getaddrinfo function when "Use proxy for dns requests if
-  possible" checkbox is checked and a general proxy has been configured.
+* Compatible con NVDA 2022.1.
+* Por razóns de seguridade, a versión mínima de NVDA establécese na 2021.3.
+* Parecheada a función socket.getaddrinfo cando a caixa de verificación
+  "Utilizar proxy para solicitudes DNS cando sexa posible" estea marcada e
+  se configure un proxy general.
 
 ### Versión 1.0
 
