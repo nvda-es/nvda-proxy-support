@@ -86,7 +86,7 @@ def applyConfig():
 			proxy_url = config.conf['proxy'][protocol.lower() + "_host"] + ":" \
 			+ str(config.conf['proxy'][protocol.lower() + "_port"])
 			if config.conf['proxy'][protocol.lower() + "_username"] != '' \
-			   and config.conf['proxy'][protocol.lower() + "_password"] != '':
+			and config.conf['proxy'][protocol.lower() + "_password"] != '':
 				proxy_url = config.conf['proxy'][protocol.lower() + "_username"] + ":"\
 				+ config.conf['proxy'][protocol.lower() + "_password"] + "@" + proxy_url
 			proxy_url = "http://" + proxy_url
@@ -94,8 +94,8 @@ def applyConfig():
 		elif protocol + "_PROXY" in orig_env.keys() and config.conf['proxy']['socks_host'] == '':
 			os.environ[protocol + "_PROXY"] = orig_env[protocol + "_PROXY"]
 		elif config.conf['proxy'][protocol.lower() + "_host"] == '' \
-		     and protocol + "_PROXY" in os.environ.keys() \
-		     and protocol + "_PROXY" not in orig_env.keys():
+		and protocol + "_PROXY" in os.environ.keys() \
+		and protocol + "_PROXY" not in orig_env.keys():
 			del os.environ[protocol + "_PROXY"]
 	urllib.request._opener = urllib.request.build_opener()
 
