@@ -1,7 +1,7 @@
 # Proxy-Unterstützung für NVDA #
 
 * Autor: José Manuel Delicado
-* NVDA-Kompatibilität: Ab 2021.3
+* NVDA compatibility: 2022.4 and beyond
 * [Stabile Version] herunterladen[1]
 
 Mit dieser NVDA-Erweiterung können Sie Verbindungen über eine oder mehrere
@@ -72,6 +72,12 @@ Netzwerkadministrator Ihres Unternehmens nach weiteren Informationen.
   verwendet.
 
 ## Änderungsprotokoll
+
+### Version 1.2
+
+* Compatible with NVDA 2023.1.
+* For security reasons, minimum NVDA version is set to 2022.4.
+* Updated translations.
 
 ### Version 1.1
 

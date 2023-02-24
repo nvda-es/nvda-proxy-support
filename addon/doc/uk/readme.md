@@ -1,7 +1,7 @@
 # Proxy support for NVDA (Підтримка проксі для NVDA) #
 
 * Автор: Jose Manuel Delicado
-* Сумісність з NVDA: 2021.3 і новіші
+* NVDA compatibility: 2022.4 and beyond
 * Завантажити [стабільну версію][1]
 
 Цей додаток дозволяє зчитувачу екрана NVDA підключатися до інтернету через
@@ -69,6 +69,12 @@
   проксі, замість цього буде використано початкове системне значення.
 
 ## Журнал змін
+
+### Version 1.2
+
+* Compatible with NVDA 2023.1.
+* For security reasons, minimum NVDA version is set to 2022.4.
+* Updated translations.
 
 ### Версія 1.1
 

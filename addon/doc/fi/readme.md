@@ -1,7 +1,7 @@
 # Välityspalvelimen tuki NVDA:lle #
 
 * Tekijä: Jose Manuel Delicado
-* Yhteensopivuus: NVDA 2021.3 ja uudemmat
+* Yhteensopivuus: NVDA 2022.4 ja uudemmat
 * Lataa [vakaa versio][1]
 
 Tämän lisäosan avulla NVDA-ruudunlukija voi muodostaa yhteyden internetiin
@@ -70,6 +70,12 @@ organisaatiosi verkonvalvojalta.
   välityspalvelimen käytöstä, sen sijaan käytetään järjestelmän oletusarvoa.
 
 ## Muutosloki
+
+### Versio 1.2
+
+* Yhteensopiva NVDA 2023.1:n kanssa.
+* Turvallisuussyistä NVDA:n vähimmäisversioksi on määritetty 2022.4.
+* Käännöksiä päivitetty.
 
 ### Versio 1.1
 
