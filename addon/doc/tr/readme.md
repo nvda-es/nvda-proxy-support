@@ -1,7 +1,7 @@
 # NVDA için Proxy Desteği #
 
 * Yazan: Jose Manuel Delicado
-* NVDA uyumluluğu: 2021.3 ve sonrasıNVDA uyumluluğu: 2019.3 ile 2021.1 arası
+* NVDA compatibility: 2022.4 and beyond
 * [kararlı sürüm][1] indir
 
 Bu eklenti, NVDA ekran okuyucusunun bir veya daha fazla proxy sunucusu
@@ -67,6 +67,12 @@ ağ yöneticinize danışın.
   dışı bırakırsanız, bunun yerine sistem varsayılanı kullanılır.
 
 ## Changelog
+
+### Version 1.2
+
+* Compatible with NVDA 2023.1.
+* For security reasons, minimum NVDA version is set to 2022.4.
+* Updated translations.
 
 ### Sürüm 1.1
 

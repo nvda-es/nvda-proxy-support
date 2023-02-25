@@ -1,7 +1,7 @@
 # Proxy support for NVDA #
 
 * Autor: Jose Manuel Delicado
-* Zgodność z NVDA: 2021.3 i później
+* NVDA compatibility: 2022.4 and beyond
 * Pobierz [Wersja stabilna][1]
 
 Ten dodatek umożliwia czytnikowi ekranu NVDA łączenie się z Internetem za
@@ -68,6 +68,12 @@ administratora sieci organizacji o więcej informacji.
   określony serwer proxy, zamiast niego zostanie użyty system domyślny.
 
 ## Lista zmian
+
+### Version 1.2
+
+* Compatible with NVDA 2023.1.
+* For security reasons, minimum NVDA version is set to 2022.4.
+* Updated translations.
 
 ### Wersja 1.1
 

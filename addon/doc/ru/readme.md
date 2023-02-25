@@ -1,7 +1,7 @@
 # Поддержка прокси для NVDA #
 
 * Автор: Jose Manuel Delicado
-* Совместимость с NVDA: 2021.3 и выше
+* NVDA compatibility: 2022.4 and beyond
 * Скачать [стабильную версию][1]
 
 Это дополнение позволяет программе чтения с экрана NVDA подключаться к
@@ -68,6 +68,12 @@ Python или модифицирует определенные переменн
   умолчанию.
 
 ## Список изменений
+
+### Version 1.2
+
+* Compatible with NVDA 2023.1.
+* For security reasons, minimum NVDA version is set to 2022.4.
+* Updated translations.
 
 ### Версия 1.1
 
