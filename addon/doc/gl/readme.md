@@ -60,8 +60,8 @@ administrador da rede da organización para máis información.
 * O tráfico UDP non está soportado en ningún dos servidores proxy.
 * Bibliotecas DLL externas non respectarán os axustes configurados neste
   complemento.
-* Only basic authentication is supported for http proxy servers. Digest
-  authentication is not supported.
+* Só se soporta autenticación básica en servidores proxy http. Non se
+  soporta autenticación digest.
 * Para redirixir todo o tráfico (incluíndo conexións https) a través dun
   proxy http, o servidor debe soportar o método http CONNECT.
 * Non se pode configurar un modo de "conexión directa". Se deshabilitas un
