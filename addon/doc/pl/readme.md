@@ -89,4 +89,4 @@ administratora sieci organizacji o więcej informacji.
 
 [[!tag dev stable]]
 
-[1]: https://addons.nvda-project.org/files/get.php?file=nvdaproxy
+[1]: https://addons.nvda-project.org/files/get.php?file=proxy

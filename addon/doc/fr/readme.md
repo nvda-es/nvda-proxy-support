@@ -91,4 +91,4 @@ serveur proxy, voir avec l'administrateur réseau de votre organisation.
 
 [[!tag dev stable]]
 
-[1]: https://addons.nvda-project.org/files/get.php?file=nvdaproxy
+[1]: https://addons.nvda-project.org/files/get.php?file=proxy
