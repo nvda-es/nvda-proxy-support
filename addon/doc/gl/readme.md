@@ -1,7 +1,7 @@
 # Soporte proxy para NVDA #
 
 * Autor: Jose Manuel Delicado
-* NVDA compatibility: 2022.4 and beyond
+* Compatibilidade con NVDA: 2022.4 en diante
 * Descargar [versión estable][1]
 
 Este complemento permite ó lector de pantallas NVDA conectarse á Internet a
@@ -69,11 +69,11 @@ administrador da rede da organización para máis información.
 
 ## Rexistro de trocos
 
-### Version 1.2
+### Versión 1.2
 
-* Compatible with NVDA 2023.1.
-* For security reasons, minimum NVDA version is set to 2022.4.
-* Updated translations.
+* Compatible con NVDA 2023.1.
+* Por razóns de seguridade, a versión mínima de NVDA establécese na 2022.4.
+* Traducións actualizadas.
 
 ### Versión 1.1
 
