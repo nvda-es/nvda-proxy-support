@@ -1,7 +1,7 @@
 # NVDA için Proxy Desteği #
 
 * Yazan: Jose Manuel Delicado
-* NVDA compatibility: 2022.4 and beyond
+* NVDA uyumluluğu: 2022.4 ve sonrası
 * [kararlı sürüm][1] indir
 
 Bu eklenti, NVDA ekran okuyucusunun bir veya daha fazla proxy sunucusu
@@ -50,11 +50,11 @@ mevcuttur:
   olarak çözülecek ve sunucu sadece hedef ip adresini alacaktır. Tüm stock4
   proxy sunucularının bu seçeneği desteklemediğini unutmayın.
 
-genellikle çoğu kullanıcının yalnızca ilk ayar grubunu yapılandırması
+Genellikle çoğu kullanıcının yalnızca ilk ayar grubunu yapılandırması
 gerekir. Proxy ayrıntılarınızı bilmiyorsanız, daha fazla bilgi için kuruluş
 ağ yöneticinize danışın.
 
-## sınırlamalar
+## Sınırlamalar
 
 * Çok sınırlı IPV6 desteği.
 * UDP trafiği tüm proxy sunucularında desteklenmez.
@@ -68,23 +68,23 @@ ağ yöneticinize danışın.
 
 ## Changelog
 
-### Version 1.2
+### Sürüm 1.2
 
-* Compatible with NVDA 2023.1.
-* For security reasons, minimum NVDA version is set to 2022.4.
-* Updated translations.
+* NVDA 2023.1 ile uyumludur.
+* Güvenlik sebeplerinden dolayı minimum NVDA sürümü 2022.4'e ayarlanmıştır.
+* Çeviriler güncellendi.
 
 ### Sürüm 1.1
 
 * NVDA 2022.1 ile uyumludur.
 * Güvenlik sebeplerinden dolayı minimum NVDA sürümü 2021.1'e ayarlanmıştır.
-* Patch socket.getaddrinfo function when "Use proxy for dns requests if
-  possible" checkbox is checked and a general proxy has been configured.
+* "Mümkünse dns istekleri için proxy kullan" onay kutusu işaretlendiğinde ve
+  genel bir proxy yapılandırıldığında socket.getaddrinfo işlevini yama.
 
 ### Sürüm 1.0
 
-* İlk Sürüm
+* İlk Sürüm.
 
 [[!tag dev stable]]
 
-[1]: https://addons.nvda-project.org/files/get.php?file=nvdaproxy
+[1]: https://www.nvaccess.org/addonStore/legacy?file=proxy

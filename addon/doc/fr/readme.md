@@ -1,7 +1,7 @@
 # Support Proxy pour NVDA #
 
 * Auteur : Jose Manuel Delicado
-* NVDA compatibility: 2022.4 and beyond
+* Compatibilité NVDA : 2022.4 et au-delà
 * Télécharger [version stable][1]
 
 Cette extension permet au lecteur d'écran NVDA de se connecter à Internet
@@ -37,9 +37,11 @@ suivants :
 * Serveur : Nom d'hôte ou adresse IP du serveur proxy. Laissez-le vide pour
   désactiver ce proxy en particulier.
 * Port : Port du serveur.
-* Username: optional. User name for server authentication.
-* Password: optional. Password for server authentication. Note that password
-  is not required for socks4 servers.
+* Nom d'utilisateur : optionnel. Nom d'utilisateur pour s'authentifier sur
+  le serveur.
+* Mot de passe : optionnel. Mot de passe pour l'authentification sur le
+  serveur. Notez que le mot de passe n'est pas nécessaire sur les serveurs
+  socks4.
 
 Outre les champs précédents, dans le premier groupe d'options, on trouve les
 options suivantes :
@@ -62,8 +64,8 @@ serveur proxy, voir avec l'administrateur réseau de votre organisation.
 * Le trafic UDP n'est pas supporté sur tous les types de serveurs proxy.
 * Les bibliothèques DLL externes ne respecteront pas les options configurées
   dans cette extension.
-* Only basic authentication is supported for http proxy servers. Digest
-  authentication is not supported.
+* Seule l'authentification de base est supportée pour les serveurs proxy
+  http. L'authentification digest n'est pas supportée.
 * Afin de rediriger tout le trafic (y compris les connexions https) via un
   proxy http, le serveur doit supporter la méthode http CONNECT.
 * Vous ne pouvez pas configurer de mode "connexion directe". Si vous
@@ -74,16 +76,19 @@ serveur proxy, voir avec l'administrateur réseau de votre organisation.
 
 ### Version 1.2
 
-* Compatible with NVDA 2023.1.
-* For security reasons, minimum NVDA version is set to 2022.4.
-* Updated translations.
+* Compatible avec NVDA 2023.1.
+* Pour des raisons de sécurité, la version minimale de NVDA est définie sur
+  2022.4.
+* Traductions mis à jour.
 
 ### Version 1.1
 
-* Compatible with NVDA 2022.1.
-* For security reasons, minimum NVDA version is set to 2021.3.
-* Patch socket.getaddrinfo function when "Use proxy for dns requests if
-  possible" checkbox is checked and a general proxy has been configured.
+* Compatible avec NVDA 2022.1.
+* Pour des raisons de sécurité, la version minimale de NVDA est définie sur
+  2021.3.
+* Fonction Patch socket.getaddrinfo lorsque "Utiliser le proxy pour les
+  requêtes DNS si cela est possible" si la case est cochée et un proxy
+  général a été configuré.
 
 ### Version 1.0
 
@@ -91,4 +96,4 @@ serveur proxy, voir avec l'administrateur réseau de votre organisation.
 
 [[!tag dev stable]]
 
-[1]: https://addons.nvda-project.org/files/get.php?file=nvdaproxy
+[1]: https://www.nvaccess.org/addonStore/legacy?file=proxy

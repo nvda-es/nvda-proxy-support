@@ -1,7 +1,7 @@
 # Soporte proxy para NVDA #
 
 * Autor: Jose Manuel Delicado
-* NVDA compatibility: 2022.4 and beyond
+* Compatibilidade con NVDA: 2022.4 en diante
 * Descargar [versión estable][1]
 
 Este complemento permite ó lector de pantallas NVDA conectarse á Internet a
@@ -60,8 +60,8 @@ administrador da rede da organización para máis información.
 * O tráfico UDP non está soportado en ningún dos servidores proxy.
 * Bibliotecas DLL externas non respectarán os axustes configurados neste
   complemento.
-* Only basic authentication is supported for http proxy servers. Digest
-  authentication is not supported.
+* Só se soporta autenticación básica en servidores proxy http. Non se
+  soporta autenticación digest.
 * Para redirixir todo o tráfico (incluíndo conexións https) a través dun
   proxy http, o servidor debe soportar o método http CONNECT.
 * Non se pode configurar un modo de "conexión directa". Se deshabilitas un
@@ -69,11 +69,11 @@ administrador da rede da organización para máis información.
 
 ## Rexistro de trocos
 
-### Version 1.2
+### Versión 1.2
 
-* Compatible with NVDA 2023.1.
-* For security reasons, minimum NVDA version is set to 2022.4.
-* Updated translations.
+* Compatible con NVDA 2023.1.
+* Por razóns de seguridade, a versión mínima de NVDA establécese na 2022.4.
+* Traducións actualizadas.
 
 ### Versión 1.1
 
@@ -89,4 +89,4 @@ administrador da rede da organización para máis información.
 
 [[!tag dev stable]]
 
-[1]: https://addons.nvda-project.org/files/get.php?file=nvdaproxy
+[1]: https://www.nvaccess.org/addonStore/legacy?file=proxy
