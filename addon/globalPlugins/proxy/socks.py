@@ -804,7 +804,6 @@ class socksocket(_BaseSocket):
 
                 msg = "Error connecting to {} proxy {}".format(
                     printable_type, proxy_server)
-                log.debug("%s due to: %s", msg, error)
                 raise ProxyConnectionError(msg, error)
             else:
                 raise error
