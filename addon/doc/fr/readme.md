@@ -1,7 +1,7 @@
 # Support Proxy pour NVDA #
 
 * Auteur : Jose Manuel Delicado
-* Compatibilité NVDA : 2022.4 et au-delà
+* Compatibilité NVDA : 2023.3.4 et au-delà
 * Télécharger [version stable][1]
 
 Cette extension permet au lecteur d'écran NVDA de se connecter à Internet

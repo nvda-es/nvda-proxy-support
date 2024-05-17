@@ -1,7 +1,7 @@
 # Proxy support for NVDA (Підтримка проксі для NVDA) #
 
 * Автор: Jose Manuel Delicado
-* NVDA compatibility: 2022.4 and beyond
+* NVDA compatibility: 2023.3.4 and beyond
 * Завантажити [стабільну версію][1]
 
 Цей додаток дозволяє зчитувачу екрана NVDA підключатися до інтернету через

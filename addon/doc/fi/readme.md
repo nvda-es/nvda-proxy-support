@@ -1,7 +1,7 @@
 # Välityspalvelimen tuki NVDA:lle #
 
 * Tekijä: Jose Manuel Delicado
-* Yhteensopivuus: NVDA 2022.4 ja uudemmat
+* Yhteensopivuus: NVDA 2023.3.4 ja uudemmat
 * Lataa [vakaa versio][1]
 
 Tämän lisäosan avulla NVDA-ruudunlukija voi muodostaa yhteyden internetiin
