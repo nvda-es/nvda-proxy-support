@@ -1,7 +1,7 @@
 # NVDA 代理支持 #
 
 * 作者： Jose Manuel Delicado
-* NVDA 兼容性：2022.4 及更高版本
+* NVDA compatibility: 2023.3.4 and beyond
 * 下载 [稳定版][1]
 
 此插件允许 NVDA 屏幕阅读器通过一个或多个代理服务器连接到互联网。为了实现这一点，它将各种补丁应用于标准 Python

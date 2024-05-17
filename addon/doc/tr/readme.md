@@ -1,7 +1,7 @@
 # NVDA için Proxy Desteği #
 
 * Yazan: Jose Manuel Delicado
-* NVDA uyumluluğu: 2022.4 ve sonrası
+* NVDA uyumluluğu: 2023.3.4 ve sonrası
 * [kararlı sürüm][1] indir
 
 Bu eklenti, NVDA ekran okuyucusunun bir veya daha fazla proxy sunucusu
@@ -59,8 +59,8 @@ ağ yöneticinize danışın.
 * Çok sınırlı IPV6 desteği.
 * UDP trafiği tüm proxy sunucularında desteklenmez.
 * Harici DLL kitaplıkları bu eklentide yapılandırılan ayarlara uymaz.
-* http proxy sunucuları için yalnızca temel yetkilendirme desteklenir. Özet
-  yetkilendirme desteklenmez.
+* Http proxy sunucuları için yalnızca temel kimlik doğrulama
+  desteklenir. Özet kimlik doğrulaması desteklenmiyor.
 * Tüm trafiği (https bağlantıları dahil) bir http proxy üzerinden yeniden
   yönlendirmek için sunucunun CONNECT http yöntemini desteklemesi gerekir.
 * Bir "doğrudan bağlantı" modu yapılandırılamaz. Belirli bir proxy'yi devre
