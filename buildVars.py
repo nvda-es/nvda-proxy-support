@@ -25,7 +25,7 @@ addon_info = {
 	# Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 	"addon_description": _("""This add-on allows NVDA connecting to the Internet through a proxy server."""),
 	# version
-	"addon_version": "1.7",
+	"addon_version": "1.8",
 	# Author(s)
 	"addon_author": "Jose Manuel Delicado <jm.delicado@nvda.es>",
 	# URL for the add-on documentation support
