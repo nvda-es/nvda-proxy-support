@@ -1,52 +1,45 @@
-# -*- coding: UTF-8 -*-
-
 # Build customizations
 # Change this file instead of sconstruct or manifest files, whenever possible.
-
-
-# Since some strings in `addon_info` are translatable,
-# we need to include them in the .po files.
-# Gettext recognizes only strings given as parameters to the `_` function.
-# To avoid initializing translations in this module we simply roll our own "fake" `_` function
-# which returns whatever is given to it as an argument.
-def _(arg):
-	return arg
-
+from site_scons.site_tools.NVDATool.typings import AddonInfo, BrailleTables, SymbolDictionaries
+from site_scons.site_tools.NVDATool.utils import _
 
 # Add-on information variables
-addon_info = {
+addon_info = AddonInfo(
 	# add-on Name/identifier, internal for NVDA
-	"addon_name": "proxy",
+	addon_name= "proxy",
 	# Add-on summary, usually the user visible name of the addon.
 	# Translators: Summary for this add-on
 	# to be shown on installation and add-on information found in Add-ons Manager.
-	"addon_summary": _("Proxy support"),
+	addon_summary= _("Proxy support"),
 	# Add-on description
 	# Translators: Long description to be shown for this add-on on add-on information from add-ons manager
-	"addon_description": _("""This add-on allows NVDA connecting to the Internet through a proxy server."""),
+	addon_description= _("""This add-on allows NVDA connecting to the Internet through a proxy server."""),
 	# version
-	"addon_version": "1.12",
+	addon_version= "26.1",
 	# Author(s)
-	"addon_author": "Jose Manuel Delicado <jm.delicado@nvda.es>",
+	addon_author= "Jose Manuel Delicado <jm.delicado@nvda.es>",
 	# URL for the add-on documentation support
-	"addon_url": "https://github.com/nvda-es/nvda-proxy-support",
+	addon_url= "https://github.com/nvda-es/nvda-proxy-support",
 	# Documentation file name
-	"addon_docFileName": "readme.html",
+	addon_docFileName= "readme.html",
 	# Minimum NVDA version supported (e.g. "2018.3.0", minor version is optional)
-	"addon_minimumNVDAVersion": "2023.3.4",
+	addon_minimumNVDAVersion= "2023.3.4",
 	# Last NVDA version supported/tested (e.g. "2018.4.0", ideally more recent than minimum version)
-	"addon_lastTestedNVDAVersion": "2025.1.0",
+	addon_lastTestedNVDAVersion= "2026.1.0",
 	# Add-on update channel (default is None, denoting stable releases,
 	# and for development releases, use "dev".)
 	# Do not change unless you know what you are doing!
-	"addon_updateChannel": None,
+	addon_updateChannel= None,
 	# Add-on license such as GPL 2
-	"addon_license": "GPL 2",
+	addon_license= "GPL 2",
 	# URL for the license document the ad-on is licensed under
-	"addon_licenseURL": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html",
+	addon_licenseURL= "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html",
 	# URL for the add-on repository where the source code can be found
-	"addon_sourceURL": "https://github.com/nvda-es/nvda-proxy-support",
-}
+	addon_sourceURL= "https://github.com/nvda-es/nvda-proxy-support",
+	# Brief changelog for this version
+	# Translators: what's new content for the add-on version to be shown in the add-on store
+	addon_changelog=_("""Compatible with NVDA 2026.1."""),
+)
 
 # Define the python files that are the sources of your add-on.
 # You can either list every file (using ""/") as a path separator,
