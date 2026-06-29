@@ -20,7 +20,7 @@ orig_env = None
 orig_getproxies_registry = None
 orig_getaddrinfo = None
 
-config.conf.spec['proxy'] = {
+config.conf.spec["proxy"] = {
 	"http_host": "string(default='')",
 	"http_port": "integer(default=8080)",
 	"http_username": "string(default='')",
@@ -47,7 +47,7 @@ proxyTypes = [
 	# TRANSLATORS: socks5 proxy type
 	_("SOCKS v5"),
 	# TRANSLATORS: http proxy type which redirects all traffic
-	_("HTTP")
+	_("HTTP"),
 ]
 
 
@@ -56,21 +56,22 @@ def patched_getproxies_registry():
 
 
 def applyConfig():
-	if config.conf['proxy']['socks_host'] != '':
+	if config.conf["proxy"]["socks_host"] != "":
 		for p in orig_env.keys():
 			if p in os.environ.keys():
 				del os.environ[p]
 		socks.set_default_proxy(
-			config.conf['proxy']['socks_type'],
-			config.conf['proxy']['socks_host'],
-			config.conf['proxy']['socks_port'],
-			config.conf['proxy']['socks_dns'],
-			config.conf['proxy']['socks_username'],
-			config.conf['proxy']['socks_password'])
+			config.conf["proxy"]["socks_type"],
+			config.conf["proxy"]["socks_host"],
+			config.conf["proxy"]["socks_port"],
+			config.conf["proxy"]["socks_dns"],
+			config.conf["proxy"]["socks_username"],
+			config.conf["proxy"]["socks_password"],
+		)
 		socket.socket = socks.socksocket
 		ssl.SSLContext.sslsocket_class = socks.sockSSLSocket
 		urllib.request.getproxies_registry = patched_getproxies_registry
-		if config.conf['proxy']['socks_dns']:
+		if config.conf["proxy"]["socks_dns"]:
 			socket.getaddrinfo = socks.getaddrinfo
 		else:
 			socket.getaddrinfo = orig_getaddrinfo
@@ -81,21 +82,33 @@ def applyConfig():
 		socket.getaddrinfo = orig_getaddrinfo
 		for k, v in orig_env.items():
 			os.environ[k] = v
-	for protocol in ['HTTP', 'HTTPS', 'FTP']:
-		if config.conf['proxy'][protocol.lower() + "_host"] != '':
-			proxy_url = config.conf['proxy'][protocol.lower() + "_host"] + ":" \
-			+ str(config.conf['proxy'][protocol.lower() + "_port"])
-			if config.conf['proxy'][protocol.lower() + "_username"] != '' \
-			and config.conf['proxy'][protocol.lower() + "_password"] != '':
-				proxy_url = config.conf['proxy'][protocol.lower() + "_username"] + ":"\
-				+ config.conf['proxy'][protocol.lower() + "_password"] + "@" + proxy_url
+	for protocol in ["HTTP", "HTTPS", "FTP"]:
+		if config.conf["proxy"][protocol.lower() + "_host"] != "":
+			proxy_url = (
+				config.conf["proxy"][protocol.lower() + "_host"]
+				+ ":"
+				+ str(config.conf["proxy"][protocol.lower() + "_port"])
+			)
+			if (
+				config.conf["proxy"][protocol.lower() + "_username"] != ""
+				and config.conf["proxy"][protocol.lower() + "_password"] != ""
+			):
+				proxy_url = (
+					config.conf["proxy"][protocol.lower() + "_username"]
+					+ ":"
+					+ config.conf["proxy"][protocol.lower() + "_password"]
+					+ "@"
+					+ proxy_url
+				)
 			proxy_url = "http://" + proxy_url
 			os.environ[protocol + "_PROXY"] = proxy_url
-		elif protocol + "_PROXY" in orig_env.keys() and config.conf['proxy']['socks_host'] == '':
+		elif protocol + "_PROXY" in orig_env.keys() and config.conf["proxy"]["socks_host"] == "":
 			os.environ[protocol + "_PROXY"] = orig_env[protocol + "_PROXY"]
-		elif config.conf['proxy'][protocol.lower() + "_host"] == '' \
-		and protocol + "_PROXY" in os.environ.keys() \
-		and protocol + "_PROXY" not in orig_env.keys():
+		elif (
+			config.conf["proxy"][protocol.lower() + "_host"] == ""
+			and protocol + "_PROXY" in os.environ.keys()
+			and protocol + "_PROXY" not in orig_env.keys()
+		):
 			del os.environ[protocol + "_PROXY"]
 	urllib.request._opener = urllib.request.build_opener()
 
@@ -106,7 +119,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		global orig_socket, orig_env, orig_getproxies_registry, orig_getaddrinfo
 		orig_socket = socket.socket
 		orig_env = {}
-		for p in ['HTTP_PROXY', 'HTTPS_PROXY', 'FTP_PROXY']:
+		for p in ["HTTP_PROXY", "HTTPS_PROXY", "FTP_PROXY"]:
 			if p in os.environ.keys():
 				orig_env[p] = os.environ[p]
 		orig_getproxies_registry = urllib.request.getproxies_registry
@@ -140,105 +153,198 @@ class ProxyPanel(SettingsPanel):
 	title = _("Proxy")
 	# TRANSLATORS: description for the proxy settings panel
 	panelDescription = _(
-		"The following options allow you to configure a proxy server "
-		"so NVDA can connect to the Internet")
+		"The following options allow you to configure a proxy server so NVDA can connect to the Internet",
+	)
 
 	def makeSettings(self, sizer):
 		helper = guiHelper.BoxSizerHelper(self, sizer=sizer)
 		helper.addItem(wx.StaticText(self, label=self.panelDescription))
-		socks_group = guiHelper.BoxSizerHelper(self, sizer=wx.StaticBoxSizer(wx.StaticBox(
-			# TRANSLATORS: label for a group of proxy settings in the proxy settings panel
-			self, label=_("All traffic")), wx.HORIZONTAL))
+		socks_group = guiHelper.BoxSizerHelper(
+			self,
+			sizer=wx.StaticBoxSizer(
+				wx.StaticBox(
+					# TRANSLATORS: label for a group of proxy settings in the proxy settings panel
+					self,
+					label=_("All traffic"),
+				),
+				wx.HORIZONTAL,
+			),
+		)
 		helper.addItem(socks_group)
 		# TRANSLATORS: label for a combo box which contains SOCKS proxy types
 		self.socks_type = socks_group.addLabeledControl(_("SOCKS proxy type"), wx.Choice, choices=proxyTypes)
-		self.socks_type.SetSelection(config.conf['proxy']['socks_type'] - 1)
+		self.socks_type.SetSelection(config.conf["proxy"]["socks_type"] - 1)
 		self.socks_host = socks_group.addLabeledControl(
 			# TRANSLATORS: proxy host for socks connections
-			_("Host: "), wx.TextCtrl, value=config.conf['proxy']['socks_host'])
+			_("Host: "),
+			wx.TextCtrl,
+			value=config.conf["proxy"]["socks_host"],
+		)
 		self.socks_port = socks_group.addLabeledControl(
 			# TRANSLATORS: proxy port for socks connections
-			_("Port: "), wx.SpinCtrl, min=1, max=65535, value=str(config.conf['proxy']['socks_port']))
-		self.socks_dns = socks_group.addItem(wx.CheckBox(
-			# TRANSLATORS: option to redirect dns traffic through a SOCKSv5 proxy
-			self, wx.ID_ANY, label=_("Use proxy for DNS requests if possible")))
-		self.socks_dns.SetValue(config.conf['proxy']['socks_dns'])
+			_("Port: "),
+			wx.SpinCtrl,
+			min=1,
+			max=65535,
+			value=str(config.conf["proxy"]["socks_port"]),
+		)
+		self.socks_dns = socks_group.addItem(
+			wx.CheckBox(
+				# TRANSLATORS: option to redirect dns traffic through a SOCKSv5 proxy
+				self,
+				wx.ID_ANY,
+				label=_("Use proxy for DNS requests if possible"),
+			),
+		)
+		self.socks_dns.SetValue(config.conf["proxy"]["socks_dns"])
 		self.socks_username = socks_group.addLabeledControl(
 			# TRANSLATORS: proxy username for socks connections
-			_("Username: "), wx.TextCtrl, value=config.conf['proxy']['socks_username'])
+			_("Username: "),
+			wx.TextCtrl,
+			value=config.conf["proxy"]["socks_username"],
+		)
 		self.socks_password = socks_group.addLabeledControl(
 			# TRANSLATORS: proxy password for socks connections
-			_("Password: "), wx.TextCtrl, style=wx.TE_PASSWORD, value=config.conf['proxy']['socks_password'])
-		http_group = guiHelper.BoxSizerHelper(self, sizer=wx.StaticBoxSizer(wx.StaticBox(
-			# TRANSLATORS: label for a group of proxy settings in the proxy settings panel
-			self, label=_("HTTP traffic")), wx.HORIZONTAL))
+			_("Password: "),
+			wx.TextCtrl,
+			style=wx.TE_PASSWORD,
+			value=config.conf["proxy"]["socks_password"],
+		)
+		http_group = guiHelper.BoxSizerHelper(
+			self,
+			sizer=wx.StaticBoxSizer(
+				wx.StaticBox(
+					# TRANSLATORS: label for a group of proxy settings in the proxy settings panel
+					self,
+					label=_("HTTP traffic"),
+				),
+				wx.HORIZONTAL,
+			),
+		)
 		helper.addItem(http_group)
 		self.http_host = http_group.addLabeledControl(
 			# TRANSLATORS: proxy host for http connections
-			_("Host: "), wx.TextCtrl, value=config.conf['proxy']['http_host'])
+			_("Host: "),
+			wx.TextCtrl,
+			value=config.conf["proxy"]["http_host"],
+		)
 		self.http_port = http_group.addLabeledControl(
 			# TRANSLATORS: proxy port for http connections
-			_("Port: "), wx.SpinCtrl, min=1, max=65535, value=str(config.conf['proxy']['http_port']))
+			_("Port: "),
+			wx.SpinCtrl,
+			min=1,
+			max=65535,
+			value=str(config.conf["proxy"]["http_port"]),
+		)
 		self.http_username = http_group.addLabeledControl(
 			# TRANSLATORS: proxy username for http connections
-			_("Username: "), wx.TextCtrl, value=config.conf['proxy']['http_username'])
+			_("Username: "),
+			wx.TextCtrl,
+			value=config.conf["proxy"]["http_username"],
+		)
 		self.http_password = http_group.addLabeledControl(
 			# TRANSLATORS: proxy password for http connections
-			_("Password: "), wx.TextCtrl, style=wx.TE_PASSWORD, value=config.conf['proxy']['http_password'])
-		https_group = guiHelper.BoxSizerHelper(self, sizer=wx.StaticBoxSizer(wx.StaticBox(
-			# TRANSLATORS: label for a group of proxy settings in the proxy settings panel
-			self, label=_("HTTPS traffic")), wx.HORIZONTAL))
+			_("Password: "),
+			wx.TextCtrl,
+			style=wx.TE_PASSWORD,
+			value=config.conf["proxy"]["http_password"],
+		)
+		https_group = guiHelper.BoxSizerHelper(
+			self,
+			sizer=wx.StaticBoxSizer(
+				wx.StaticBox(
+					# TRANSLATORS: label for a group of proxy settings in the proxy settings panel
+					self,
+					label=_("HTTPS traffic"),
+				),
+				wx.HORIZONTAL,
+			),
+		)
 		helper.addItem(https_group)
 		self.https_host = https_group.addLabeledControl(
 			# TRANSLATORS: proxy host for https connections
-			_("Host: "), wx.TextCtrl, value=config.conf['proxy']['https_host'])
+			_("Host: "),
+			wx.TextCtrl,
+			value=config.conf["proxy"]["https_host"],
+		)
 		self.https_port = https_group.addLabeledControl(
 			# TRANSLATORS: proxy port for https connections
-			_("Port: "), wx.SpinCtrl, min=1, max=65535, value=str(config.conf['proxy']['https_port']))
+			_("Port: "),
+			wx.SpinCtrl,
+			min=1,
+			max=65535,
+			value=str(config.conf["proxy"]["https_port"]),
+		)
 		self.https_username = https_group.addLabeledControl(
 			# TRANSLATORS: proxy username for https connections
-			_("Username: "), wx.TextCtrl, value=config.conf['proxy']['https_username'])
+			_("Username: "),
+			wx.TextCtrl,
+			value=config.conf["proxy"]["https_username"],
+		)
 		self.https_password = https_group.addLabeledControl(
 			# TRANSLATORS: proxy password for https connections
-			_("Password: "), wx.TextCtrl, style=wx.TE_PASSWORD, value=config.conf['proxy']['https_password'])
-		ftp_group = guiHelper.BoxSizerHelper(self, sizer=wx.StaticBoxSizer(wx.StaticBox(
-			# TRANSLATORS: label for a group of proxy settings in the proxy settings panel
-			self, label=_("FTP traffic")), wx.HORIZONTAL))
+			_("Password: "),
+			wx.TextCtrl,
+			style=wx.TE_PASSWORD,
+			value=config.conf["proxy"]["https_password"],
+		)
+		ftp_group = guiHelper.BoxSizerHelper(
+			self,
+			sizer=wx.StaticBoxSizer(
+				wx.StaticBox(
+					# TRANSLATORS: label for a group of proxy settings in the proxy settings panel
+					self,
+					label=_("FTP traffic"),
+				),
+				wx.HORIZONTAL,
+			),
+		)
 		helper.addItem(ftp_group)
 		self.ftp_host = ftp_group.addLabeledControl(
 			# TRANSLATORS: proxy host for ftp connections
-			_("Host: "), wx.TextCtrl,
-			value=config.conf['proxy']['ftp_host'])
+			_("Host: "),
+			wx.TextCtrl,
+			value=config.conf["proxy"]["ftp_host"],
+		)
 		self.ftp_port = ftp_group.addLabeledControl(
 			# TRANSLATORS: proxy port for ftp connections
-			_("Port: "), wx.SpinCtrl, min=1, max=65535,
-			value=str(config.conf['proxy']['ftp_port']))
+			_("Port: "),
+			wx.SpinCtrl,
+			min=1,
+			max=65535,
+			value=str(config.conf["proxy"]["ftp_port"]),
+		)
 		self.ftp_username = ftp_group.addLabeledControl(
 			# TRANSLATORS: proxy username for ftp connections
-			_("Username: "), wx.TextCtrl,
-			value=config.conf['proxy']['ftp_username'])
+			_("Username: "),
+			wx.TextCtrl,
+			value=config.conf["proxy"]["ftp_username"],
+		)
 		self.ftp_password = ftp_group.addLabeledControl(
 			# TRANSLATORS: proxy password for ftp connections
-			_("Password: "), wx.TextCtrl, style=wx.TE_PASSWORD,
-			value=config.conf['proxy']['ftp_password'])
+			_("Password: "),
+			wx.TextCtrl,
+			style=wx.TE_PASSWORD,
+			value=config.conf["proxy"]["ftp_password"],
+		)
 
 	def onSave(self):
-		config.conf['proxy']['http_host'] = self.http_host.GetValue()
-		config.conf['proxy']['http_port'] = self.http_port.GetValue()
-		config.conf['proxy']['http_username'] = self.http_username.GetValue()
-		config.conf['proxy']['http_password'] = self.http_password.GetValue()
-		config.conf['proxy']['https_host'] = self.https_host.GetValue()
-		config.conf['proxy']['https_port'] = self.https_port.GetValue()
-		config.conf['proxy']['https_username'] = self.https_username.GetValue()
-		config.conf['proxy']['https_password'] = self.https_password.GetValue()
-		config.conf['proxy']['ftp_host'] = self.ftp_host.GetValue()
-		config.conf['proxy']['ftp_port'] = self.ftp_port.GetValue()
-		config.conf['proxy']['ftp_username'] = self.ftp_username.GetValue()
-		config.conf['proxy']['ftp_password'] = self.ftp_password.GetValue()
-		config.conf['proxy']['socks_host'] = self.socks_host.GetValue()
-		config.conf['proxy']['socks_port'] = self.socks_port.GetValue()
-		config.conf['proxy']['socks_username'] = self.socks_username.GetValue()
-		config.conf['proxy']['socks_password'] = self.socks_password.GetValue()
-		config.conf['proxy']['socks_type'] = self.socks_type.Selection + 1
-		config.conf['proxy']['socks_dns'] = self.socks_dns.GetValue()
+		config.conf["proxy"]["http_host"] = self.http_host.GetValue()
+		config.conf["proxy"]["http_port"] = self.http_port.GetValue()
+		config.conf["proxy"]["http_username"] = self.http_username.GetValue()
+		config.conf["proxy"]["http_password"] = self.http_password.GetValue()
+		config.conf["proxy"]["https_host"] = self.https_host.GetValue()
+		config.conf["proxy"]["https_port"] = self.https_port.GetValue()
+		config.conf["proxy"]["https_username"] = self.https_username.GetValue()
+		config.conf["proxy"]["https_password"] = self.https_password.GetValue()
+		config.conf["proxy"]["ftp_host"] = self.ftp_host.GetValue()
+		config.conf["proxy"]["ftp_port"] = self.ftp_port.GetValue()
+		config.conf["proxy"]["ftp_username"] = self.ftp_username.GetValue()
+		config.conf["proxy"]["ftp_password"] = self.ftp_password.GetValue()
+		config.conf["proxy"]["socks_host"] = self.socks_host.GetValue()
+		config.conf["proxy"]["socks_port"] = self.socks_port.GetValue()
+		config.conf["proxy"]["socks_username"] = self.socks_username.GetValue()
+		config.conf["proxy"]["socks_password"] = self.socks_password.GetValue()
+		config.conf["proxy"]["socks_type"] = self.socks_type.Selection + 1
+		config.conf["proxy"]["socks_dns"] = self.socks_dns.GetValue()
 		applyConfig()
