@@ -9,17 +9,17 @@ from base64 import b64encode
 try:
 	from collections.abc import Callable
 except ImportError:
-	from collections import Callable
-import errno
-import ssl
+	from collections.abc import Callable
 import _ssl
-from errno import EOPNOTSUPP, EINVAL, EAGAIN
+import errno
 import functools
-from io import BytesIO
 import logging
-from os import SEEK_CUR
 import socket
+import ssl
 import struct
+from errno import EAGAIN, EINVAL, EOPNOTSUPP
+from io import BytesIO
+from os import SEEK_CUR
 
 __version__ = "1.7.1-nvda"
 
@@ -63,7 +63,7 @@ class ProxyError(IOError):
 		self.socket_err = socket_err
 
 		if socket_err:
-			self.msg += ": {}".format(socket_err)
+			self.msg += f": {socket_err}"
 
 	def __str__(self):
 		return self.msg
@@ -225,7 +225,7 @@ def create_connection(
 			sock.connect((remote_host, remote_port))
 			return sock
 
-		except (socket.error, ProxyError) as e:
+		except (OSError, ProxyError) as e:
 			err = e
 			if sock:
 				sock.close()
@@ -234,7 +234,7 @@ def create_connection(
 	if err:
 		raise err
 
-	raise socket.error("gai returned empty list.")
+	raise OSError("gai returned empty list.")
 
 
 class _BaseSocket(socket.socket):
@@ -291,7 +291,7 @@ class socksocket(_BaseSocket):
 			# raise ValueError(msg.format(type))
 			type = socket.SOCK_STREAM
 			proto = socket.IPPROTO_TCP
-		super(socksocket, self).__init__(family, type, proto, *args, **kwargs)
+		super().__init__(family, type, proto, *args, **kwargs)
 		self._proxyconn = None  # TCP connection to keep UDP relay alive
 
 		if self.default_proxy:
@@ -320,8 +320,8 @@ class socksocket(_BaseSocket):
 		try:
 			# test if we're connected, if so apply timeout
 			self.get_proxy_peername()
-			super(socksocket, self).settimeout(self._timeout)
-		except socket.error:
+			super().settimeout(self._timeout)
+		except OSError:
 			pass
 
 	def gettimeout(self):
@@ -380,11 +380,11 @@ class socksocket(_BaseSocket):
 			return _orig_socket.bind(self, *pos, **kw)
 
 		if self._proxyconn:
-			raise socket.error(EINVAL, "Socket already bound to an address")
+			raise OSError(EINVAL, "Socket already bound to an address")
 		if proxy_type != SOCKS5:
 			msg = "UDP only supported by SOCKS5 proxy type"
-			raise socket.error(EOPNOTSUPP, msg)
-		super(socksocket, self).bind(*pos, **kw)
+			raise OSError(EOPNOTSUPP, msg)
+		super().bind(*pos, **kw)
 
 		# Need to specify actual local port because
 		# some relays drop packets if a port of zero is specified.
@@ -403,13 +403,13 @@ class socksocket(_BaseSocket):
 		# but some proxies return a private IP address (10.x.y.z)
 		host, _ = proxy
 		_, port = relay
-		super(socksocket, self).connect((host, port))
-		super(socksocket, self).settimeout(self._timeout)
+		super().connect((host, port))
+		super().settimeout(self._timeout)
 		self.proxy_sockname = ("0.0.0.0", 0)  # Unknown
 
 	def sendto(self, bytes, *args, **kwargs):
 		if self.type != socket.SOCK_DGRAM:
-			return super(socksocket, self).sendto(bytes, *args, **kwargs)
+			return super().sendto(bytes, *args, **kwargs)
 		if not self._proxyconn:
 			self.bind(("", 0))
 
@@ -423,22 +423,22 @@ class socksocket(_BaseSocket):
 		header.write(STANDALONE)
 		self._write_SOCKS5_address(address, header)
 
-		sent = super(socksocket, self).send(header.getvalue() + bytes, *flags, **kwargs)
+		sent = super().send(header.getvalue() + bytes, *flags, **kwargs)
 		return sent - header.tell()
 
 	def send(self, bytes, flags=0, **kwargs):
 		if self.type == socket.SOCK_DGRAM:
 			return self.sendto(bytes, flags, self.proxy_peername, **kwargs)
 		else:
-			return super(socksocket, self).send(bytes, flags, **kwargs)
+			return super().send(bytes, flags, **kwargs)
 
 	def recvfrom(self, bufsize, flags=0):
 		if self.type != socket.SOCK_DGRAM:
-			return super(socksocket, self).recvfrom(bufsize, flags)
+			return super().recvfrom(bufsize, flags)
 		if not self._proxyconn:
 			self.bind(("", 0))
 
-		buf = BytesIO(super(socksocket, self).recv(bufsize + 1024, flags))
+		buf = BytesIO(super().recv(bufsize + 1024, flags))
 		buf.seek(2, SEEK_CUR)
 		frag = buf.read(1)
 		if ord(frag):
@@ -448,7 +448,7 @@ class socksocket(_BaseSocket):
 		if self.proxy_peername:
 			peerhost, peerport = self.proxy_peername
 			if fromhost != peerhost or peerport not in (0, fromport):
-				raise socket.error(EAGAIN, "Packet filtered")
+				raise OSError(EAGAIN, "Packet filtered")
 
 		return (buf.read(bufsize), (fromhost, fromport))
 
@@ -459,7 +459,7 @@ class socksocket(_BaseSocket):
 	def close(self):
 		if self._proxyconn:
 			self._proxyconn.close()
-		return super(socksocket, self).close()
+		return super().close()
 
 	def get_proxy_sockname(self):
 		"""Returns the bound IP address and port number at the proxy."""
@@ -582,12 +582,12 @@ class socksocket(_BaseSocket):
 			if status != 0x00:
 				# Connection failed: server returned an error
 				error = SOCKS5_ERRORS.get(status, "Unknown error")
-				raise SOCKS5Error("{:#04x}: {}".format(status, error))
+				raise SOCKS5Error(f"{status:#04x}: {error}")
 
 			# Get the bound address/port
 			bnd = self._read_SOCKS5_address(reader)
 
-			super(socksocket, self).settimeout(self._timeout)
+			super().settimeout(self._timeout)
 			return (resolved, bnd)
 		finally:
 			reader.close()
@@ -612,7 +612,7 @@ class socksocket(_BaseSocket):
 				host = socket.inet_ntop(family, addr_bytes)
 				file.write(struct.pack(">H", port))
 				return host, port
-			except socket.error:
+			except OSError:
 				continue
 
 		# Well it's not an IP number, so it's probably a DNS name.
@@ -668,7 +668,7 @@ class socksocket(_BaseSocket):
 			remote_resolve = False
 			try:
 				addr_bytes = socket.inet_aton(dest_addr)
-			except socket.error:
+			except OSError:
 				# It's a DNS name. Check where it should be resolved.
 				if rdns:
 					addr_bytes = b"\x00\x00\x00\x01"
@@ -706,7 +706,7 @@ class socksocket(_BaseSocket):
 			if status != 0x5A:
 				# Connection failed: server returned an error
 				error = SOCKS4_ERRORS.get(status, "Unknown error")
-				raise SOCKS4Error("{:#04x}: {}".format(status, error))
+				raise SOCKS4Error(f"{status:#04x}: {error}")
 
 			# Get the bound address/port
 			self.proxy_sockname = (
@@ -769,7 +769,7 @@ class socksocket(_BaseSocket):
 			)
 
 		if status_code != 200:
-			error = "{}: {}".format(status_code, status_msg)
+			error = f"{status_code}: {status_msg}"
 			if status_code in (400, 403, 405):
 				# It's likely that the HTTP proxy server does not support the
 				# CONNECT tunneling method
@@ -801,7 +801,7 @@ class socksocket(_BaseSocket):
 			# Probably IPv6, not supported -- raise an error, and hope
 			# Happy Eyeballs (RFC6555) makes sure at least the IPv4
 			# connection works...
-			raise socket.error("PySocks doesn't support IPv6: %s" % str(dest_pair))
+			raise OSError("PySocks doesn't support IPv6: %s" % str(dest_pair))
 
 		dest_addr, dest_port = dest_pair
 
@@ -834,33 +834,30 @@ class socksocket(_BaseSocket):
 
 		# We set the timeout here so that we don't hang in connection or during
 		# negotiation.
-		super(socksocket, self).settimeout(self._timeout)
+		super().settimeout(self._timeout)
 
 		if proxy_type is None:
 			# Treat like regular socket object
 			self.proxy_peername = dest_pair
-			super(socksocket, self).settimeout(self._timeout)
-			super(socksocket, self).connect((dest_addr, dest_port))
+			super().settimeout(self._timeout)
+			super().connect((dest_addr, dest_port))
 			return
 
 		proxy_addr = self._proxy_addr()
 
 		try:
 			# Initial connection to proxy server.
-			super(socksocket, self).connect(proxy_addr)
+			super().connect(proxy_addr)
 
-		except socket.error as error:
+		except OSError as error:
 			# Error while connecting to proxy
 			self.close()
 			if not catch_errors:
 				proxy_addr, proxy_port = proxy_addr
-				proxy_server = "{}:{}".format(proxy_addr, proxy_port)
+				proxy_server = f"{proxy_addr}:{proxy_port}"
 				printable_type = PRINTABLE_PROXY_TYPES[proxy_type]
 
-				msg = "Error connecting to {} proxy {}".format(
-					printable_type,
-					proxy_server,
-				)
+				msg = f"Error connecting to {printable_type} proxy {proxy_server}"
 				raise ProxyConnectionError(msg, error)
 			else:
 				raise error
@@ -871,7 +868,7 @@ class socksocket(_BaseSocket):
 				# Calls negotiate_{SOCKS4, SOCKS5, HTTP}
 				negotiate = self._proxy_negotiators[proxy_type]
 				negotiate(self, dest_addr, dest_port)
-			except socket.error as error:
+			except OSError as error:
 				if not catch_errors:
 					# Wrap socket errors
 					self.close()
@@ -1299,7 +1296,7 @@ class sockSSLSocket(socksocket):
 		else:
 			if cb_type not in ssl.CHANNEL_BINDING_TYPES:
 				raise ValueError(
-					"{0} channel binding type not implemented".format(cb_type),
+					f"{cb_type} channel binding type not implemented",
 				)
 			return None
 

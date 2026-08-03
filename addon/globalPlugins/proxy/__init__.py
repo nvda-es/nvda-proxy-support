@@ -2,16 +2,18 @@
 # This file is covered by the GNU General Public License.
 # See the file COPYING.txt for more details.
 # Copyright (C) 2022 Jose Manuel Delicado <jm.delicado@nvda.es>
-import addonHandler
-import globalPluginHandler
-import config
+import os
 import socket
 import ssl
 import urllib
+
+import addonHandler
+import config
+import globalPluginHandler
 import wx
-from gui import guiHelper, NVDASettingsDialog
+from gui import NVDASettingsDialog, guiHelper
 from gui.settingsDialogs import SettingsPanel
-import os
+
 from . import socks
 
 addonHandler.initTranslation()
@@ -115,7 +117,7 @@ def applyConfig():
 
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def __init__(self):
-		super(GlobalPlugin, self).__init__()
+		super().__init__()
 		global orig_socket, orig_env, orig_getproxies_registry, orig_getaddrinfo
 		orig_socket = socket.socket
 		orig_env = {}
@@ -142,7 +144,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		config.post_configProfileSwitch.unregister(self.onConfigChanged)
 		config.post_configReset.unregister(self.onConfigChanged)
 		NVDASettingsDialog.categoryClasses.remove(ProxyPanel)
-		super(GlobalPlugin, self).terminate()
+		super().terminate()
 
 	def onConfigChanged(self, *args, **kwargs):
 		applyConfig()
